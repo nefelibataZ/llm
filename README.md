@@ -16,6 +16,16 @@ python -m eduagent "RAG 是什么？"
 python -m unittest discover -s tests -v
 ```
 
+首次安装需要从软件源获取构建工具 setuptools。无网络时可跳过安装，从仓库根目录直接运行（PowerShell）：
+
+```powershell
+$env:PYTHONPATH = (Join-Path (Get-Location) "src")
+python -m eduagent "RAG 是什么？"
+python -m unittest discover -s tests -v
+```
+
+macOS / Linux 对应使用 `PYTHONPATH=src python -m eduagent "RAG 是什么？"`。
+
 也可安装后运行：`eduagent "如何学习 Agent？"`。
 
 默认使用离线 extractive 模式：从示例课程数据检索并摘录原文，不调用真实大模型，也不需要密钥。输出明确标记模式并给出来源；无命中时拒绝编造答案。它验证的是检索、上下文组织、回答与引用的工程闭环，不代表真实 LLM 或完整自治 Agent。
